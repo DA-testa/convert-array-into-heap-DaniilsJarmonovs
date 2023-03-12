@@ -11,7 +11,7 @@ def build_heap(heap):
                 if(heap[parent] > heap[current-1]):
                     heap[parent], heap[current-1] = heap[current-1], heap[parent]
                     swaps.append([current-1, parent])
-            else:
+            elif(current+1<count):
                  if(heap[parent] > heap[current+1]):
                      heap[parent], heap[current+1] = heap[current+1], heap[parent]
                      swaps.append([current+1, parent])
