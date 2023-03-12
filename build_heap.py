@@ -33,7 +33,7 @@ def main():
         heap = list(map(int, input().split()))
     elif("F" in inp):
         FName = input()
-        with open(FName, mode="r") as file:
+        with open("./test/"+FName, mode="r") as file:
             count = int(file.readline())
             text = file.readline()
             heap = list(map(int, text.split()))
