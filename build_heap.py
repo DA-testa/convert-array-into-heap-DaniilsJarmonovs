@@ -1,41 +1,56 @@
 # python3
-
-
-def build_heap(data):
+#Izstrādāja Daniils Jarmonovs, 18. grupa, 221RDC003
+def build_heap(heap):
     swaps = []
+    for i in range(count-1, -1, -1):
+        current = i
+        parent = (current-1)//2
+        while(i>0 and parent>=0 and heap[current] < heap[parent]):
+            heap[current], heap[parent] = heap[parent], heap[current]
+            swaps.append([parent, current])
+            if(current%2==0):
+                if(heap[parent] > heap[current-1]):
+                    heap[parent], heap[current-1] = heap[current-1], heap[parent]
+                    swaps.append([current-1, parent])
+            elif(current+1<count):
+                 if(heap[parent] > heap[current+1]):
+                     heap[parent], heap[current+1] = heap[current+1], heap[parent]
+                     swaps.append([current+1, parent])
+            current = parent
+            parent = (current-1)//2
+
     # TODO: Creat heap and heap sort
     # try to achieve  O(n) and not O(n2)
 
-
+    #print(heap)
     return swaps
 
 
 def main():
-    
-    # TODO : add input and corresponding checks
-    # add another input for I or F 
-    # first two tests are from keyboard, third test is from a file
+    inp = input()
+    global count
+    if("I" in inp):
+        count = int(input())
+        heap = list(map(int, input().split()))
+    elif("F" in inp):
+        FName = input()
+        with open("./tests/"+FName, mode="r") as file:
+            count = int(file.readline())
+            text = file.readline()
+            heap = list(map(int, text.split()))
 
-
-    # input from keyboard
-    n = int(input())
-    data = list(map(int, input().split()))
-
-    # checks if lenght of data is the same as the said lenght
-    assert len(data) == n
-
-    # calls function to assess the data 
-    # and give back all swaps
-    swaps = build_heap(data)
-
+    assert len(heap) == count
+    swaps = build_heap(heap)
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
 
 
     # output all swaps
     print(len(swaps))
-    for i, j in swaps:
-        print(i, j)
+    for i in swaps:
+        print(i[0], i[1])
+    ##for i, j in swaps:
+      ##  print(i, j)
 
 
 if __name__ == "__main__":
