@@ -1,4 +1,5 @@
 # python3
+#Izstrādāja Daniils Jarmonovs, 18. grupa, 221RDC003
 def build_heap(heap):
     swaps = []
     for i in range(count-1, -1, -1):
